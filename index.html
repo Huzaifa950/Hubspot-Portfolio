@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@400;500;600&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         *,
         *::before,
@@ -20,16 +21,16 @@
         }
 
         :root {
-            --orange: #FF7A59;
-            --orange-dim: #E8613D;
-            --orange-glow: rgba(255, 122, 89, 0.12);
-            --orange-subtle: rgba(255, 122, 89, 0.07);
+            --orange: #FC8803;
+            --orange-dim: #E07602;
+            --orange-glow: rgba(252, 98, 3, 0.12);
+            --orange-subtle: rgba(252, 98, 3, 0.07);
             --bg: #0D0D0F;
             --bg2: #131316;
             --bg3: #1A1A1F;
             --bg4: #222228;
             --border: rgba(255, 255, 255, 0.07);
-            --border-hover: rgba(255, 122, 89, 0.3);
+            --border-hover: rgba(252, 98, 3, 0.3);
             --text: #F0EDE8;
             --text-muted: #8A8894;
             --text-dim: #5A5866;
@@ -97,6 +98,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .nav-logo i {
+            color: var(--orange);
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
         .nav-logo span {
@@ -1114,7 +1121,10 @@
 
     <!-- NAV -->
     <nav>
-        <a href="#hero" class="nav-logo">H<span>.</span>Dev</a>
+        <a href="#hero" class="nav-logo">
+            <i class="fa-brands fa-hubspot"></i>
+            H<span>.</span>Dev
+        </a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
