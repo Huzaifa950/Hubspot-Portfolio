@@ -1,1614 +1,660 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muhammad Huzaifa — Senior HubSpot Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --orange: #FC8803;
-            --orange-dim: #E07602;
-            --orange-glow: rgba(252, 98, 3, 0.12);
-            --orange-subtle: rgba(252, 98, 3, 0.07);
-            --bg: #0D0D0F;
-            --bg2: #131316;
-            --bg3: #1A1A1F;
-            --bg4: #222228;
-            --border: rgba(255, 255, 255, 0.07);
-            --border-hover: rgba(252, 98, 3, 0.3);
-            --text: #F0EDE8;
-            --text-muted: #8A8894;
-            --text-dim: #5A5866;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'Instrument Sans', sans-serif;
-            --font-mono: 'DM Mono', monospace;
-            --radius: 12px;
-            --radius-sm: 8px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: rgba(255, 122, 89, 0.3);
-            color: var(--text);
-        }
-
-        /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--orange-dim);
-            border-radius: 2px;
-        }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(13, 13, 15, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-logo i {
-            color: var(--orange);
-            font-size: 2.6rem;
-            flex-shrink: 0;
-        }
-
-        .nav-logo span {
-            color: var(--orange);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            color: var(--text-muted);
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--orange);
-        }
-
-        .nav-cta {
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 1.25rem;
-            border-radius: var(--radius-sm);
-            background: var(--orange);
-            color: #fff;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
-            text-transform: uppercase;
-        }
-
-        .nav-cta:hover {
-            background: var(--orange-dim);
-            transform: translateY(-1px);
-        }
-
-        /* ── HERO ── */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 8rem 2.5rem 4rem;
-            position: relative;
-        }
-
-        .hero-grid-bg {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255, 122, 89, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 122, 89, 0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            pointer-events: none;
-            background: radial-gradient(ellipse, rgba(255, 122, 89, 0.08) 0%, transparent 70%);
-        }
-
-        .hero-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .hero-content {
-            position: relative;
-            flex: 1 1 0;
-            min-width: 0;
-            max-width: 900px;
-        }
-
-        .hero-photo-wrapper {
-            flex: 0 0 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.25rem;
-            background: radial-gradient(circle at top left, rgba(255, 122, 89, 0.12), transparent 55%),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 999px;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
-        }
-
-        .hero-photo {
-            width: 100%;
-            max-width: 280px;
-            aspect-ratio: 1 / 1;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.12);
-            background: linear-gradient(135deg, rgba(255, 122, 89, 0.12), rgba(255, 255, 255, 0.04));
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            letter-spacing: 0.06em;
-            color: var(--orange);
-            text-transform: uppercase;
-            padding: 0.35rem 0.9rem;
-            border-radius: 99px;
-            border: 1px solid rgba(255, 122, 89, 0.3);
-            background: var(--orange-subtle);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-tag::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--orange);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1)
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(0.85)
-            }
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            word-spacing: 0.08em;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1 em {
-            color: var(--orange);
-            font-style: normal;
-        }
-
-        h1 .line2 {
-            display: block;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .hero-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.85rem 1.75rem;
-            border-radius: var(--radius-sm);
-            background: var(--orange);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
-        }
-
-        .btn-primary:hover {
-            background: var(--orange-dim);
-            transform: translateY(-2px);
-        }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.85rem 1.75rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: border-color 0.2s, color 0.2s, transform 0.15s;
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--orange);
-            color: var(--orange);
-            transform: translateY(-2px);
-        }
-
-        .hero-stats {
-            margin-top: 4rem;
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-        }
-
-        .stat-num {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--orange);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-top: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ── SECTIONS ── */
-        section {
-            padding: 6rem 2.5rem;
-        }
-
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 0.5rem;
-        }
-
-        h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 1rem;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h2 span {
-            color: var(--orange);
-        }
-
-        .section-intro {
-            color: var(--text-muted);
-            max-width: 580px;
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        /* ── ABOUT ── */
-        #about {
-            background: var(--bg2);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.9;
-            margin-bottom: 1rem;
-        }
-
-        .about-text p strong {
-            color: var(--orange);
-            font-weight: 600;
-        }
-
-        .about-highlights {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .highlight-card {
-            padding: 1.25rem 1.5rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: border-color 0.2s;
-        }
-
-        .highlight-card:hover {
-            border-color: var(--border-hover);
-        }
-
-        .highlight-icon {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text);
-            margin-bottom: 0.25rem;
-        }
-
-        .highlight-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* ── EDUCATION ── */
-        #education {
-            background: var(--bg);
-        }
-
-        .edu-card {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-            padding: 2rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            max-width: 720px;
-            transition: border-color 0.2s;
-        }
-
-        .edu-card:hover {
-            border-color: var(--border-hover);
-        }
-
-        .edu-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            background: var(--orange-glow);
-            border: 1px solid rgba(255, 122, 89, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-
-        .edu-degree {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text);
-        }
-
-        .edu-school {
-            color: var(--orange);
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-top: 2px;
-        }
-
-        .edu-meta {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            margin-top: 6px;
-        }
-
-        .edu-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-top: 0.75rem;
-            line-height: 1.7;
-        }
-
-        /* ── SKILLS ── */
-        #skills {
-            background: var(--bg2);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-group {
-            padding: 1.5rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .skill-group:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-3px);
-        }
-
-        .skill-group-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill-group-title .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--orange);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .skill-tag {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: var(--bg4);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-        }
-
-        .skill-tag.hot {
-            border-color: rgba(255, 122, 89, 0.3);
-            color: var(--orange);
-            background: var(--orange-subtle);
-        }
-
-        /* ── EXPERIENCE ── */
-        #experience {
-            background: var(--bg);
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            bottom: 0;
-            width: 1px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -2.45rem;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--orange);
-            border: 2px solid var(--bg);
-            box-shadow: 0 0 0 3px var(--orange-glow);
-        }
-
-        .exp-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .exp-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text);
-        }
-
-        .exp-company {
-            color: var(--orange);
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-top: 2px;
-        }
-
-        .exp-date {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            padding: 4px 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            white-space: nowrap;
-            margin-top: 2px;
-        }
-
-        .exp-list {
-            margin-top: 1rem;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .exp-list li {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .exp-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--orange);
-            font-size: 0.7rem;
-            top: 3px;
-        }
-
-        /* ── PROJECTS ── */
-        #projects {
-            background: var(--bg2);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            padding: 1.75rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: border-color 0.2s, transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .project-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-        }
-
-        .project-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .project-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: var(--orange-glow);
-            border: 1px solid rgba(255, 122, 89, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .project-badge {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.05em;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            background: var(--orange-subtle);
-            color: var(--orange);
-            border: 1px solid rgba(255, 122, 89, 0.2);
-        }
-
-        .project-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text);
-        }
-
-        .project-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: auto;
-        }
-
-        .stack-tag {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 3px 8px;
-            border-radius: 4px;
-            background: var(--bg4);
-            color: var(--text-dim);
-            border: 1px solid var(--border);
-        }
-
-        /* ── SERVICES ── */
-        #services {
-            background: var(--bg);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            padding: 2rem 1.75rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: border-color 0.2s, background 0.2s;
-            cursor: default;
-        }
-
-        .service-card:hover {
-            border-color: var(--border-hover);
-            background: var(--bg4);
-        }
-
-        .service-num {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--orange-glow);
-            line-height: 1;
-            margin-bottom: 1rem;
-            -webkit-text-stroke: 1px rgba(255, 122, 89, 0.3);
-            color: transparent;
-        }
-
-        .service-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* ── CONTACT ── */
-        #contact {
-            background: var(--bg2);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info h2 {
-            margin-bottom: 1rem;
-        }
-
-        .contact-info p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .contact-link:hover {
-            color: var(--orange);
-        }
-
-        .contact-link-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 8px;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        .contact-link:hover .contact-link-icon {
-            border-color: var(--border-hover);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        form label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        form input:focus,
-        form textarea:focus {
-            border-color: rgba(255, 122, 89, 0.5);
-        }
-
-        form textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
-
-        form button {
-            align-self: flex-start;
-            padding: 0.85rem 2rem;
-            border-radius: var(--radius-sm);
-            background: var(--orange);
-            color: #fff;
-            border: none;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.15s;
-        }
-
-        form button:hover {
-            background: var(--orange-dim);
-            transform: translateY(-2px);
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            padding: 2rem 2.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            background: var(--bg);
-            text-align: center;
-        }
-
-        .footer-copy {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-        }
-
-        .footer-copy span {
-            color: var(--orange);
-        }
-
-        .footer-back {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-back:hover {
-            color: var(--orange);
-        }
-
-        /* ── DIVIDER ── */
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 0;
-        }
-
-        /* ── ANIMATIONS ── */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-up:nth-child(2) {
-            transition-delay: 0.1s;
-        }
-
-        .fade-up:nth-child(3) {
-            transition-delay: 0.2s;
-        }
-
-        .fade-up:nth-child(4) {
-            transition-delay: 0.3s;
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1460px) {
-            .hero-row {
-                max-width: 100%;
-                gap: 2rem;
-            }
-
-            .hero-photo-wrapper {
-                flex: 0 0 260px;
-            }
-
-            .hero-photo {
-                max-width: 240px;
-            }
-        }
-
-        @media (max-width: 920px) {
-            .hero-row {
-                gap: 1.5rem;
-            }
-
-            .hero-photo-wrapper {
-                flex: 0 0 220px;
-            }
-
-            .hero-photo {
-                max-width: 200px;
-            }
-        }
-
-        @media (max-width: 820px) {
-            .hero-photo-wrapper {
-                flex: 0 0 180px;
-            }
-
-            .hero-photo {
-                max-width: 160px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.25rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            section {
-                padding: 4rem 1.25rem;
-            }
-
-            h1 {
-                font-size: 2.8rem;
-            }
-
-            .about-grid,
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-row {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                max-width: 100%;
-                padding: 0;
-            }
-
-            .hero-photo-wrapper {
-                flex: 0 0 auto;
-                width: 280px;
-                height: 280px;
-                margin-top: 2rem;
-            }
-
-            .hero-photo {
-                max-width: none;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            #hero {
-                padding: 7rem 1.25rem 3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .hero-desc {
-                font-size: 0.95rem;
-            }
-
-            .hero-photo-wrapper {
-                width: 220px;
-                height: 220px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Muhammad Huzaifa — HubSpot Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF5C35;--orange2:#FF7A56;--orange3:#FF9870;
+  --orange-glow:rgba(255,92,53,0.35);--orange-dim:rgba(255,92,53,0.12);--orange-faint:rgba(255,92,53,0.06);
+  --void:#050508;--space:#0C0B12;--deep:#11101A;
+  --panel:rgba(255,255,255,0.04);--panel2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,92,53,0.25);
+  --text:#F0EEF8;--text2:#A8A4BC;--text3:#6B677E;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;
+  --r:10px;--r-sm:6px;--r-lg:18px;--r-xl:28px;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed nav */
+}
+body{background:var(--void);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--orange-glow);color:#fff}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--space)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px}
+
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.nebula{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;opacity:0.18}
+.nb1{width:700px;height:700px;background:radial-gradient(circle,var(--orange) 0%,transparent 70%);top:-200px;right:-200px;animation:nd1 20s ease-in-out infinite alternate}
+.nb2{width:500px;height:500px;background:radial-gradient(circle,#8B2FF8 0%,transparent 70%);bottom:20%;left:-150px;opacity:0.12;animation:nd2 25s ease-in-out infinite alternate}
+.nb3{width:400px;height:400px;background:radial-gradient(circle,var(--orange2) 0%,transparent 70%);bottom:-100px;right:10%;opacity:0.1;animation:nd3 18s ease-in-out infinite alternate}
+@keyframes nd1{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.1)}}
+@keyframes nd2{from{transform:translate(0,0)}to{transform:translate(30px,-40px) scale(1.08)}}
+@keyframes nd3{from{transform:translate(0,0)}to{transform:translate(-20px,20px) scale(1.05)}}
+
+#cursor{position:fixed;width:20px;height:20px;border:1px solid var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;mix-blend-mode:difference}
+#cursor.expand{width:40px;height:40px;opacity:.5}
+
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--orange);z-index:200;box-shadow:0 0 10px var(--orange);width:0%;transition:width .1s linear}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;background:rgba(5,5,8,0.7);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all .3s}
+nav.scrolled{background:rgba(5,5,8,0.92);border-bottom-color:var(--border2)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px}
+.nav-logo .orbit{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border2);position:relative;display:flex;align-items:center;justify-content:center}
+.nav-logo .orbit::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange-glow)}
+.nav-logo .orbit::after{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:var(--orange3);top:-1px;right:-1px;box-shadow:0 0 8px var(--orange);animation:orbit-dot 4s linear infinite}
+@keyframes orbit-dot{from{transform:rotate(0deg) translateX(13px)}to{transform:rotate(360deg) translateX(13px)}}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;color:var(--text2);text-decoration:none;text-transform:uppercase;font-family:var(--font-mono);transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--orange);transform:scaleX(0);transition:transform .25s}
+.nav-links a:hover{color:var(--orange)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{font-size:0.76rem;font-weight:700;letter-spacing:0.08em;padding:0.5rem 1.4rem;border-radius:var(--r-sm);background:var(--orange);color:#fff;text-decoration:none;text-transform:uppercase;font-family:var(--font-mono);border:1px solid transparent;transition:all .2s;box-shadow:0 0 20px var(--orange-glow)}
+.nav-cta:hover{background:transparent;border-color:var(--orange);color:var(--orange);box-shadow:0 0 30px var(--orange-glow)}
+
+#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 3rem 4rem;position:relative;z-index:1}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-label{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:10px;margin-bottom:1.6rem}
+.hero-label .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange);animation:pulse-glow 2s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 8px var(--orange)}50%{box-shadow:0 0 22px var(--orange),0 0 40px var(--orange-glow)}}
+.hero-label::before{content:'';width:28px;height:1px;background:var(--orange);opacity:0.6}
+h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.6rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;color:var(--text);margin-bottom:1.6rem}
+h1 .glow-word{color:var(--orange);text-shadow:0 0 40px var(--orange-glow),0 0 80px rgba(255,92,53,0.2);display:inline-block;animation:text-flicker 6s ease-in-out infinite}
+@keyframes text-flicker{0%,100%{text-shadow:0 0 40px var(--orange-glow),0 0 80px rgba(255,92,53,0.2)}50%{text-shadow:0 0 60px var(--orange-glow),0 0 120px rgba(255,92,53,0.35)}}
+.hero-sub{font-size:1rem;color:var(--text2);max-width:460px;line-height:1.9;margin-bottom:2.5rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-solid{display:inline-flex;align-items:center;gap:8px;padding:0.9rem 1.8rem;border-radius:var(--r-sm);background:var(--orange);color:#fff;font-weight:600;font-size:0.88rem;text-decoration:none;letter-spacing:0.02em;font-family:var(--font-display);box-shadow:0 0 30px var(--orange-glow);transition:all .2s;border:1px solid transparent}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--orange-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:0.9rem 1.8rem;border-radius:var(--r-sm);border:1px solid var(--border);color:var(--text2);font-weight:400;font-size:0.88rem;text-decoration:none;font-family:var(--font-display);transition:all .2s;background:var(--panel)}
+.btn-outline:hover{border-color:var(--border2);color:var(--orange);transform:translateY(-2px)}
+
+/* FLOW PANEL */
+.hero-flow{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:var(--r-xl);padding:1.5rem 1.5rem 1.2rem;overflow:hidden}
+.hero-flow::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,92,53,0.07),transparent 60%);pointer-events:none}
+.flow-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.flow-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:8px}
+.flow-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse-glow 2s ease-in-out infinite}
+.flow-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;border-radius:4px;background:rgba(255,92,53,0.1);border:1px solid rgba(255,92,53,0.25);color:var(--orange2);letter-spacing:0.06em}
+
+@keyframes dash-flow{to{stroke-dashoffset:-24}}
+.fe{animation:dash-flow 1.8s linear infinite}
+.fe.s{animation-duration:2.8s}
+.fe.m{animation-duration:2.3s}
+
+@keyframes np{0%,100%{opacity:1}50%{opacity:.7}}
+.na{animation:np 2s ease-in-out infinite}
+.na2{animation:np 2s ease-in-out infinite .5s}
+.na3{animation:np 2s ease-in-out infinite 1s}
+
+/* Floating badges */
+.fbadge{position:absolute;background:rgba(17,16,26,0.95);border:1px solid var(--border2);border-radius:var(--r-sm);padding:5px 10px;font-family:var(--font-mono);font-size:0.6rem;color:var(--orange2);letter-spacing:0.05em;pointer-events:none;animation:badge-anim 5s ease-in-out infinite}
+@keyframes badge-anim{0%{opacity:0;transform:translateY(6px)}15%{opacity:1;transform:translateY(0)}85%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-6px)}}
+
+section{padding:7rem 3rem;position:relative;z-index:1}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);margin-bottom:0.7rem;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:'';width:16px;height:1px;background:var(--orange);opacity:0.7}
+h2{font-family:var(--font-display);font-size:clamp(2rem,3.8vw,2.9rem);font-weight:800;line-height:1.1;letter-spacing:-0.025em;color:var(--text);margin-bottom:1rem}
+h2 em{color:var(--orange);font-style:normal;text-shadow:0 0 30px var(--orange-glow)}
+.sec-lead{color:var(--text2);max-width:520px;line-height:1.85;margin-bottom:3.5rem;font-weight:300}
+
+#about{background:transparent;border-top:1px solid var(--border)}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-body p{color:var(--text2);line-height:1.9;margin-bottom:1.2rem;font-size:0.96rem;font-weight:300}
+.about-body strong{color:var(--orange);font-weight:600}
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.hi-card{padding:1.4rem 1.6rem;background:var(--panel);border-radius:var(--r);border:1px solid var(--border);border-left:2px solid var(--orange);transition:all .25s;position:relative;overflow:hidden}
+.hi-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at left center,var(--orange-faint),transparent 60%);opacity:0;transition:opacity .25s}
+.hi-card:hover{border-color:var(--border2);transform:translateX(6px)}
+.hi-card:hover::before{opacity:1}
+.hi-card-title{font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:4px;font-family:var(--font-display)}
+.hi-card-desc{font-size:0.83rem;color:var(--text2);line-height:1.65;font-weight:300}
+
+#education{background:transparent;border-top:1px solid var(--border)}
+.edu-block{display:flex;gap:2.5rem;align-items:flex-start;max-width:680px;padding:2.2rem 2.5rem;background:var(--panel);border-radius:var(--r-xl);border:1px solid var(--border);position:relative;overflow:hidden;transition:all .3s}
+.edu-block:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.edu-block::after{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle,var(--orange-dim),transparent 70%)}
+.edu-year{font-family:var(--font-mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);flex-shrink:0;padding-top:4px}
+.edu-degree{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--text);line-height:1.2}
+.edu-school{color:var(--orange);font-weight:600;font-size:0.88rem;margin-top:5px;font-family:var(--font-mono)}
+.edu-desc{font-size:0.85rem;color:var(--text2);margin-top:0.85rem;line-height:1.8;font-weight:300}
+
+#skills{background:transparent;border-top:1px solid var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.sk-group{padding:1.75rem;background:var(--panel);border-radius:var(--r);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.sk-group::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--orange-dim),transparent);opacity:0;transition:opacity .3s}
+.sk-group:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.sk-group:hover::before{opacity:1}
+.sk-group-head{font-weight:700;font-size:0.88rem;color:var(--text);margin-bottom:1.1rem;display:flex;align-items:center;gap:8px;font-family:var(--font-display)}
+.sk-group-head .line{display:inline-block;width:16px;height:2px;background:var(--orange)}
+.sk-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sk-tag{font-family:var(--font-mono);font-size:0.68rem;padding:4px 10px;border-radius:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text3);transition:all .2s;cursor:default}
+.sk-tag:hover{border-color:var(--border2);color:var(--orange2);background:var(--orange-dim)}
+.sk-tag.primary{background:var(--orange-dim);border-color:rgba(255,92,53,0.3);color:var(--orange2)}
+
+#experience{background:transparent;border-top:1px solid var(--border)}
+.tl{border-left:1.5px solid var(--border2);padding-left:2.5rem;position:relative}
+.tl-item{position:relative;margin-bottom:3rem}
+.tl-dot{position:absolute;left:-2.85rem;top:6px;width:14px;height:14px;border-radius:50%;background:var(--void);border:2px solid var(--orange);box-shadow:0 0 16px var(--orange-glow)}
+.tl-dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--orange);animation:pulse-glow 2s ease-in-out infinite}
+.tl-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.tl-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--text)}
+.tl-company{color:var(--orange);font-weight:600;font-size:0.85rem;margin-top:3px;font-family:var(--font-mono)}
+.tl-date{font-family:var(--font-mono);font-size:0.68rem;color:var(--text3);padding:5px 12px;border-radius:4px;background:var(--panel);border:1px solid var(--border);white-space:nowrap;margin-top:4px}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.tl-list li{font-size:0.89rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.75;font-weight:300}
+.tl-list li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:0.7rem;opacity:0.7}
+
+#projects{background:transparent;border-top:1px solid var(--border)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.proj-card{padding:2rem;background:var(--panel);border-radius:var(--r-lg);border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:all .3s;position:relative;overflow:hidden;transform-style:preserve-3d}
+.proj-card::before{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;background:radial-gradient(circle,var(--orange-dim),transparent 70%);opacity:0;transition:opacity .3s}
+.proj-card:hover{border-color:var(--border2);box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px var(--border2)}
+.proj-card:hover::before{opacity:1}
+.proj-top{display:flex;justify-content:space-between;align-items:center}
+.proj-icon{width:46px;height:46px;border-radius:10px;background:var(--orange-dim);border:1px solid rgba(255,92,53,0.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.proj-badge{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;padding:4px 10px;border-radius:4px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text3);text-transform:uppercase}
+.proj-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text)}
+.proj-desc{font-size:0.85rem;color:var(--text2);line-height:1.8;font-weight:300}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.stack-tag{font-family:var(--font-mono);font-size:0.65rem;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text3)}
+
+#services{background:transparent;border-top:1px solid var(--border)}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.srv-card{padding:2rem 1.75rem;background:var(--panel);border-radius:var(--r);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden;cursor:default}
+.srv-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--orange-faint),transparent);opacity:0;transition:opacity .3s;pointer-events:none}
+.srv-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(255,92,53,0.08)}
+.srv-card:hover::after{opacity:1}
+.srv-num{font-family:var(--font-mono);font-size:0.9rem;font-weight:700;color:var(--orange);margin-bottom:1.2rem;display:flex;align-items:center;gap:10px;text-shadow:0 0 20px var(--orange-glow)}
+.srv-num::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent)}
+.srv-title{font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.55rem}
+.srv-desc{font-size:0.83rem;color:var(--text2);line-height:1.8;font-weight:300}
+
+#contact{background:transparent;border-top:1px solid var(--border)}
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.contact-head p{color:var(--text2);line-height:1.9;margin-bottom:2rem;font-size:0.94rem;font-weight:300}
+.clinks{display:flex;flex-direction:column;gap:0.75rem}
+.clink{display:flex;align-items:center;gap:12px;font-size:0.87rem;color:var(--text2);text-decoration:none;padding:0.8rem 1rem;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--panel);transition:all .2s}
+.clink:hover{color:var(--orange);border-color:var(--border2);background:var(--orange-faint);transform:translateX(4px)}
+.clink-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+form{display:flex;flex-direction:column;gap:1.1rem;background:var(--panel);padding:2rem;border-radius:var(--r-xl);border:1px solid var(--border);position:relative;overflow:hidden}
+form::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,var(--orange-faint),transparent);pointer-events:none}
+form label{font-family:var(--font-mono);font-size:0.67rem;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:6px}
+form input,form textarea{width:100%;padding:0.8rem 1rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none;transition:border-color .2s}
+form input::placeholder,form textarea::placeholder{color:var(--text3)}
+form input:focus,form textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-faint)}
+form textarea{min-height:130px;resize:vertical}
+form button{align-self:flex-start;padding:0.85rem 2rem;border-radius:var(--r-sm);background:var(--orange);color:#fff;border:none;font-family:var(--font-display);font-weight:700;font-size:0.88rem;cursor:pointer;box-shadow:0 0 25px var(--orange-glow);transition:all .2s}
+form button:hover{background:transparent;border:1px solid var(--orange);color:var(--orange);box-shadow:0 0 35px var(--orange-glow);transform:translateY(-2px)}
+
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--void);position:relative;z-index:1}
+.footer-copy{font-size:0.8rem;color:var(--text3);font-family:var(--font-mono)}
+.footer-copy span{color:var(--orange)}
+.footer-back{font-family:var(--font-mono);font-size:0.72rem;color:var(--text3);text-decoration:none;transition:color .2s}
+.footer-back:hover{color:var(--orange)}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:.1s}
+.reveal:nth-child(3){transition-delay:.2s}
+.reveal:nth-child(4){transition-delay:.3s}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  section{padding:4.5rem 1.5rem}
+  #hero{padding:6rem 1.5rem 3rem}
+  .hero-inner,.about-layout,.contact-layout{grid-template-columns:1fr;gap:2.5rem}
+  h1{font-size:2.7rem}
+  footer{padding:1.5rem}
+  #cursor{display:none}
+}
+</style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <a href="#hero" class="nav-logo">
-            <i class="fa-brands fa-hubspot"></i>
-            H<span>.</span>Dev
-        </a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Hire Me</a>
-    </nav>
+<div id="progress-bar"></div>
+<div id="cursor"></div>
+<canvas id="starfield"></canvas>
+<div class="nebula nb1"></div>
+<div class="nebula nb2"></div>
+<div class="nebula nb3"></div>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="hero-grid-bg"></div>
-        <div class="hero-glow"></div>
-        <div class="hero-row">
-            <div class="hero-content">
-                <div class="hero-tag">Available for freelance work</div>
-                <h1>
-                    Hi, I'm <em>Muhammad Huzaifa</em>
-                    <span class="line2">Senior HubSpot Developer</span>
-                </h1>
-                <p class="hero-desc">
-                    I build powerful CRM integrations, automate complex business workflows, and connect HubSpot to the tools
-                    your business depends on — from NetSuite to PandaDoc and beyond.
-                </p>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn-primary">View My Work →</a>
-                    <a href="#contact" class="btn-ghost">Get In Touch</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <div class="stat-num">3.5+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div>
-                        <div class="stat-num">10+</div>
-                        <div class="stat-label">Integrations Built</div>
-                    </div>
-                    <div>
-                        <div class="stat-num">100%</div>
-                        <div class="stat-label">HubSpot Focused</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-photo-wrapper fade-up">
-                <img class="hero-photo" src="images/personal.png" alt="Muhammad Huzaifa portrait" />
-            </div>
-        </div>
-    </section>
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo"><div class="orbit"></div>M. Huzaifa</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="section-inner">
-            <div class="section-label">// about me</div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <h2>Building at the intersection of <span>CRM & automation</span></h2>
-                    <p>I'm a Senior HubSpot developer with <strong>3.5+ years of hands-on experience</strong> designing and
-                        implementing CRM solutions that power real business operations — not just demos.</p>
-                    <p>My work lives at the intersection of HubSpot's platform, backend serverless logic, and
-                        third-party APIs. I specialize in making data move reliably between complex systems like
-                        <strong>HubSpot ↔️ NetSuite</strong>, handling edge cases, rate limits, and business logic with
-                        care.
-                    </p>
-                    <p>From building <strong>custom cards and objects</strong> to orchestrating <strong>multi-system
-                            integrations</strong> via Zapier and direct APIs, I bring both technical depth and a product
-                        mindset to every project.</p>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-card fade-up">
-                        <div class="highlight-icon">⚡</div>
-                        <div class="highlight-title">Serverless-First Thinking</div>
-                        <div class="highlight-desc">HubSpot custom code actions, serverless functions, and API-heavy
-                            workflows are my everyday tools.</div>
-                    </div>
-                    <div class="highlight-card fade-up">
-                        <div class="highlight-icon">🔁</div>
-                        <div class="highlight-title">Bidirectional Sync Specialist</div>
-                        <div class="highlight-desc">Deep experience syncing HubSpot ↔️ NetSuite — Sales Orders, Purchase
-                            Orders, Invoices, and fulfillments.</div>
-                    </div>
-                    <div class="highlight-card fade-up">
-                        <div class="highlight-icon">🔗</div>
-                        <div class="highlight-title">Integration Architect</div>
-                        <div class="highlight-desc">PandaDoc, JIRA, Gmail, and Slack connected via Zapier and native
-                            APIs — with real error handling.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education">
-        <div class="section-inner">
-            <div class="section-label">// education</div>
-            <h2>Academic <span>Background</span></h2>
-            <p class="section-intro">The foundation behind the code.</p>
-            <div class="edu-card fade-up">
-                <div class="edu-icon">🎓</div>
-                <div>
-                    <div class="edu-degree">Bachelor of Science in Computer Science</div>
-                    <div class="edu-school">Government College University Lahore</div>
-                    <div class="edu-meta">2020 – 2024</div>
-                    <div class="edu-desc">Studied core concepts of software engineering including programming
-                        fundamentals, data structures & algorithms, database systems, software design models, operating
-                        systems, and system programming. Also explored modern technologies such as Large Language Models
-                        (LLMs) and AI-driven development concepts. Applied this knowledge to real-world automation and
-                        integration projects post-graduation, with a strong focus on HubSpot ecosystem development, CRM
-                        integrations, and enterprise-level solutions.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="section-inner">
-            <div class="section-label">// skills & tools</div>
-            <h2>What I <span>Work With</span></h2>
-            <p class="section-intro">A focused stack built around HubSpot's platform and the ecosystem around it.</p>
-            <div class="skills-grid">
-                <div class="skill-group fade-up">
-                    <div class="skill-group-title"><span class="dot"></span> HubSpot Core</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag hot">Serverless Functions</span>
-                        <span class="skill-tag hot">Custom Cards</span>
-                        <span class="skill-tag hot">Custom Objects</span>
-                        <span class="skill-tag hot">Pipelines & Stages</span>
-                        <span class="skill-tag">CRM APIs</span>
-                        <span class="skill-tag">Workflows</span>
-                        <span class="skill-tag">Object Associations</span>
-                        <span class="skill-tag">HubSpot Forms</span>
-                    </div>
-                </div>
-                <div class="skill-group fade-up">
-                    <div class="skill-group-title"><span class="dot"></span> Integrations</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag hot">NetSuite RESTlets</span>
-                        <span class="skill-tag hot">SuiteScript 2.x</span>
-                        <span class="skill-tag">OAuth 1.0</span>
-                        <span class="skill-tag">PandaDoc API</span>
-                        <span class="skill-tag">JIRA API</span>
-                        <span class="skill-tag">Gmail API</span>
-                        <span class="skill-tag">Slack API</span>
-                        <span class="skill-tag">Zapier</span>
-                    </div>
-                </div>
-                <div class="skill-group fade-up">
-                    <div class="skill-group-title"><span class="dot"></span> Development</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag hot">Node.js</span>
-                        <span class="skill-tag">JavaScript (ES6+)</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Batch Processing</span>
-                        <span class="skill-tag">Rate Limit Handling</span>
-                        <span class="skill-tag">Error Handling</span>
-                        <span class="skill-tag">JSON / XML</span>
-                    </div>
-                </div>
-                <div class="skill-group fade-up">
-                    <div class="skill-group-title"><span class="dot"></span> Marketing & Ops</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Transactional Emails</span>
-                        <span class="skill-tag">Marketing Automation</span>
-                        <span class="skill-tag">Invoice Creation</span>
-                        <span class="skill-tag">Order Fulfillment</span>
-                        <span class="skill-tag">Sales Order Sync</span>
-                        <span class="skill-tag">Purchase Orders</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="section-inner">
-            <div class="section-label">// experience</div>
-            <h2>Work <span>History</span></h2>
-            <p class="section-intro">3.5+ years of building real-world HubSpot solutions.</p>
-            <div class="timeline">
-                <div class="timeline-item fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-title">Senior HubSpot Developer</div>
-                            <div class="exp-company">Prodege</div>
-                        </div>
-                        <div class="exp-date">June 2025</div>
-                    </div>
-                    <ul class="exp-list">
-                        <li>Client-facing: propose solutions that fit the environment and constraints.</li>
-                        <li>Project-closure flows end-to-end, including automated creation of billable_event tickets.</li>
-                        <li>Full ticket flow: automated emails to clients and ticket lifecycle automation.</li>
-                        <li>Read form data & populate object properties via workflows and custom code.</li>
-                        <li>Process fulfillments and create invoices through HubSpot automated workflows.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-title">HubSpot Developer</div>
-                            <div class="exp-company">Burnt Brains</div>
-                        </div>
-                        <div class="exp-date">June 2024</div>
-                    </div>
-                    <ul class="exp-list">
-                        <li>Built custom objects to extend CRM data models.</li>
-                        <li>Developed custom cards using HubSpot UI Extensions.</li>
-                        <li>Implemented bidirectional syncing between HubSpot and NetSuite.</li>
-                        <li>Wrote scripts to clean, optimize, and populate HubSpot object data.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-title">Software Engineer Intern</div>
-                            <div class="exp-company">Burnt Brains</div>
-                        </div>
-                        <div class="exp-date">Mar 2023</div>
-                    </div>
-                    <ul class="exp-list">
-                        <li>Learn basics of HubSpot.</li>
-                        <li>Import/export datasets into HubSpot objects.</li>
-                        <li>Build and test basic workflows.</li>
-                        <li>Assist with data validation and simple automations.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="section-inner">
-            <div class="section-label">// projects</div>
-            <h2>Featured <span>Work</span></h2>
-            <p class="section-intro">Key integrations and systems I've designed and shipped.</p>
-            <div class="projects-grid">
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">🔄</div>
-                        <span class="project-badge">Integration</span>
-                    </div>
-                    <div class="project-title">HubSpot ↔️ NetSuite Bidirectional Sync</div>
-                    <div class="project-desc">Full bidirectional sync of deals, tickets, and line items between HubSpot
-                        and NetSuite. Handles Sales Order creation, Purchase Order updates, chunked batch reads, and
-                        rate limit resilience.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">Node.js</span>
-                        <span class="stack-tag">SuiteScript 2.x</span>
-                        <span class="stack-tag">OAuth 1.0</span>
-                        <span class="stack-tag">HubSpot API</span>
-                        <span class="stack-tag">NetSuite RESTlet</span>
-                    </div>
-                </div>
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">🧾</div>
-                        <span class="project-badge">Automation</span>
-                    </div>
-                    <div class="project-title">Invoice & Fulfillment Automation</div>
-                    <div class="project-desc">HubSpot workflow-triggered serverless functions that create invoices and
-                        process fulfillments directly in NetSuite, removing manual data entry and eliminating sync
-                        delays.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">HubSpot Workflows</span>
-                        <span class="stack-tag">Serverless Functions</span>
-                        <span class="stack-tag">NetSuite API</span>
-                        <span class="stack-tag">Node.js</span>
-                    </div>
-                </div>
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">📄</div>
-                        <span class="project-badge">Integration</span>
-                    </div>
-                    <div class="project-title">PandaDoc + HubSpot Document Flow</div>
-                    <div class="project-desc">Connected HubSpot deals to PandaDoc for automatic document generation and
-                        status sync, enabling sales teams to send proposals without leaving the CRM.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">PandaDoc API</span>
-                        <span class="stack-tag">HubSpot CRM</span>
-                        <span class="stack-tag">Zapier</span>
-                        <span class="stack-tag">Webhooks</span>
-                    </div>
-                </div>
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">🔔</div>
-                        <span class="project-badge">Automation</span>
-                    </div>
-                    <div class="project-title">Multi-Channel Notification System</div>
-                    <div class="project-desc">Unified notification pipeline connecting HubSpot workflow triggers to
-                        Slack channels, Gmail, and JIRA ticket creation based on deal stage changes and support ticket
-                        events.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">Zapier</span>
-                        <span class="stack-tag">Slack API</span>
-                        <span class="stack-tag">JIRA API</span>
-                        <span class="stack-tag">Gmail API</span>
-                        <span class="stack-tag">HubSpot</span>
-                    </div>
-                </div>
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">🧩</div>
-                        <span class="project-badge">Custom Dev</span>
-                    </div>
-                    <div class="project-title">Custom CRM Objects & Cards</div>
-                    <div class="project-desc">Built custom HubSpot objects and CRM cards to extend data models for order
-                        tracking, product configuration, and pipeline-stage-specific data capture requirements.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">Custom Objects</span>
-                        <span class="stack-tag">Custom Cards</span>
-                        <span class="stack-tag">HubSpot UI Ext.</span>
-                        <span class="stack-tag">Associations API</span>
-                    </div>
-                </div>
-                <div class="project-card fade-up">
-                    <div class="project-card-top">
-                        <div class="project-icon">📧</div>
-                        <span class="project-badge">Marketing</span>
-                    </div>
-                    <div class="project-title">Automated Email & Marketing Flows</div>
-                    <div class="project-desc">Designed end-to-end HubSpot marketing and transactional email workflows —
-                        from lead nurture sequences to order confirmations — with dynamic personalization tokens.</div>
-                    <div class="project-stack">
-                        <span class="stack-tag">HubSpot Workflows</span>
-                        <span class="stack-tag">Email Templates</span>
-                        <span class="stack-tag">HubSpot Forms</span>
-                        <span class="stack-tag">Smart Content</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="section-inner">
-            <div class="section-label">// services</div>
-            <h2>What I Can <span>Do For You</span></h2>
-            <p class="section-intro">Focused services for businesses that run on HubSpot.</p>
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <div class="service-num">01</div>
-                    <div class="service-title">HubSpot–NetSuite Integration</div>
-                    <div class="service-desc">End-to-end bidirectional sync of your CRM and ERP data — deals, orders,
-                        invoices, and fulfillments kept in perfect alignment.</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-num">02</div>
-                    <div class="service-title">Custom HubSpot Development</div>
-                    <div class="service-desc">Serverless functions, custom cards, custom objects, and advanced workflows
-                        tailored to your business logic.</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-num">03</div>
-                    <div class="service-title">Third-Party Integrations</div>
-                    <div class="service-desc">Connect HubSpot to PandaDoc, JIRA, Slack, Gmail, and more — via Zapier or
-                        direct API, with robust error handling.</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-num">04</div>
-                    <div class="service-title">Marketing & Email Automation</div>
-                    <div class="service-desc">Build lead nurture flows, transactional email systems, and smart
-                        segmentation that convert and retain customers at scale.</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-num">05</div>
-                    <div class="service-title">CRM Architecture & Consulting</div>
-                    <div class="service-desc">Pipeline design, object associations, data modeling — structure your
-                        HubSpot instance to match how your team actually works.</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-num">06</div>
-                    <div class="service-title">Integration Debugging & Hardening</div>
-                    <div class="service-desc">Fix flaky syncs, rate limit failures, and silent data bugs. Add retries,
-                        batching, and monitoring to existing integrations.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-    // Animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // EmailJS init
-    emailjs.init("XB2JM1KX3w-99UvzS");
-
-    // Contact form
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        const btn = document.getElementById("submit-btn");
-        btn.textContent = "Sending…";
-        btn.disabled = true;
-
-        const templateParams = {
-            from_name:  document.getElementById("from_name").value,
-            from_email: document.getElementById("from_email").value,
-            message:    document.getElementById("message").value,
-        };
-
-        emailjs.send("service_kh4jmxn", "template_bnt3guc", templateParams)
-            .then(() => {
-                btn.textContent = "Sent ✓";
-                document.getElementById("contact-form").reset();
-                setTimeout(() => {
-                    btn.textContent = "Send Message →";
-                    btn.disabled = false;
-                }, 3000);
-            })
-            .catch((error) => {
-                console.error("EmailJS error:", error);
-                btn.textContent = "Failed — try again";
-                btn.disabled = false;
-            });
-    }
-</script>
-
-<!-- CONTACT -->
-<section id="contact">
-    <div class="section-inner">
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <div class="section-label">// contact</div>
-                <h2>Let's <span>Work Together</span></h2>
-                <p>Have a HubSpot integration challenge, a sync that keeps breaking, or a new automation in mind?
-                    I'd love to hear about it.</p>
-                <div class="contact-links">
-                    <a href="mailto:mhuzaifa.prof@email.com" class="contact-link">
-                        <div class="contact-link-icon">✉️</div>
-                        mhuzaifa.prof@email.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/mhuzaifa440/" class="contact-link" target="_blank">
-                        <div class="contact-link-icon">💼</div>
-                        linkedin.com/in/huzaifa
-                    </a>
-                    <a href="https://github.com/Huzaifa950" class="contact-link" target="_blank">
-                        <div class="contact-link-icon">🐙</div>
-                        github.com/huzaifa
-                    </a>
-                </div>
-            </div>
-            <form id="contact-form" onsubmit="handleSubmit(event)">
-                <div>
-                    <label>Your Name</label>
-                    <input type="text" id="from_name" placeholder="Alex Johnson" required />
-                </div>
-                <div>
-                    <label>Email Address</label>
-                    <input type="email" id="from_email" placeholder="alex@company.com" required />
-                </div>
-                <div>
-                    <label>What do you need?</label>
-                    <textarea id="message" placeholder="Describe your integration or automation challenge…" required></textarea>
-                </div>
-                <button type="submit" id="submit-btn">Send Message →</button>
-            </form>
-        </div>
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-label"><span class="pulse"></span> Available for freelance</div>
+      <h1>Building smart<br/><span class="glow-word">HubSpot</span><br/>systems.</h1>
+      <p class="hero-sub">CRM integrations, workflow automation, and ERP sync — built with the precision your business deserves.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-solid">View My Work →</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
     </div>
+
+    <div class="hero-flow">
+      <div class="flow-header">
+        <div class="flow-title"><span class="flow-dot"></span>HubSpot automation flow</div>
+        <span class="flow-badge">LIVE</span>
+      </div>
+
+      <svg width="100%" viewBox="0 0 360 510" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#FF5C35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(255,92,53,0.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- EDGE: trigger → contact -->
+        <line x1="180" y1="62" x2="180" y2="100" stroke="#FF5C35" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe"/>
+        <!-- EDGE: contact → branch -->
+        <line x1="180" y1="140" x2="180" y2="182" stroke="#FF5C35" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe m"/>
+        <!-- EDGE: branch left → nurture -->
+        <path d="M148 202 L88 202 L88 262" fill="none" stroke="rgba(255,92,53,0.4)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah2)" class="fe s"/>
+        <!-- EDGE: branch right → deal -->
+        <path d="M212 202 L272 202 L272 262" fill="none" stroke="#FF5C35" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe"/>
+        <!-- EDGE: nurture → slack -->
+        <line x1="88" y1="302" x2="88" y2="352" stroke="rgba(255,92,53,0.4)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah2)" class="fe m"/>
+        <!-- EDGE: deal → netsuite -->
+        <line x1="272" y1="302" x2="272" y2="352" stroke="#FF5C35" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe s"/>
+        <!-- EDGE: both → done -->
+        <path d="M88 392 L88 430 L180 430 L180 448" fill="none" stroke="rgba(255,92,53,0.5)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe s"/>
+        <path d="M272 392 L272 430 L180 430 L180 448" fill="none" stroke="rgba(255,92,53,0.5)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)" class="fe s"/>
+
+        <!-- NODE 1: Trigger -->
+        <g class="na">
+          <rect x="86" y="22" width="188" height="40" rx="8" fill="rgba(255,92,53,0.14)" stroke="#FF5C35" stroke-width="1.5"/>
+          <text x="180" y="35" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="10" fill="#FF9870" font-weight="700">⚡ Form Submitted</text>
+          <text x="180" y="50" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="8" fill="rgba(255,154,112,0.7)">Trigger: HubSpot Form</text>
+        </g>
+
+        <!-- NODE 2: Create/Update Contact -->
+        <g class="na2">
+          <rect x="76" y="100" width="208" height="40" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,92,53,0.35)" stroke-width="1"/>
+          <text x="180" y="116" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="9.5" fill="#A8A4BC">Create / Update Contact</text>
+          <text x="180" y="131" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="7.5" fill="#6B677E">CRM API upsert by email</text>
+        </g>
+
+        <!-- NODE 3: Branch diamond -->
+        <g class="na3">
+          <polygon points="180,182 222,202 180,222 138,202" fill="rgba(255,92,53,0.1)" stroke="#FF5C35" stroke-width="1.5"/>
+          <text x="180" y="201" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="9" fill="#FF7A56" font-weight="700">CRITERIA?</text>
+        </g>
+        <text x="110" y="198" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#6B677E">None Met</text>
+        <text x="250" y="198" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#FF9870">Met</text>
+
+        <!-- NODE 4L: Nurture sequence -->
+        <g>
+          <rect x="28" y="262" width="120" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="88" y="278" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="8.5" fill="#A8A4BC">Enroll Sequence</text>
+          <text x="88" y="293" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="7.5" fill="#6B677E">3-email nurture</text>
+        </g>
+
+        <!-- NODE 4R: Create deal -->
+        <g class="na">
+          <rect x="212" y="262" width="120" height="40" rx="8" fill="rgba(255,92,53,0.1)" stroke="rgba(255,92,53,0.35)" stroke-width="1"/>
+          <text x="272" y="278" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="8.5" fill="#FF9870">Create Deal</text>
+          <text x="272" y="293" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="7.5" fill="#6B677E">Pipeline: Insights</text>
+        </g>
+
+        <!-- NODE 5L: Slack notify -->
+        <g>
+          <rect x="28" y="352" width="120" height="40" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="88" y="368" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="8.5" fill="#A8A4BC">Slack Notify</text>
+          <text x="88" y="383" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="7.5" fill="#6B677E">#sales channel</text>
+        </g>
+
+        <!-- NODE 5R: NetSuite sync -->
+        <g class="na2">
+          <rect x="212" y="352" width="120" height="40" rx="8" fill="rgba(255,92,53,0.09)" stroke="rgba(255,92,53,0.3)" stroke-width="1"/>
+          <text x="272" y="368" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="8.5" fill="#FF9870">NetSuite Sync</text>
+          <text x="272" y="383" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="7.5" fill="#6B677E">RESTlet → Sales Order</text>
+        </g>
+
+        <!-- NODE: Done -->
+        <g>
+          <rect x="132" y="448" width="96" height="26" rx="13" fill="rgba(255,92,53,0.12)" stroke="#FF5C35" stroke-width="1"/>
+          <text x="180" y="461" text-anchor="middle" dominant-baseline="central" font-family="Space Mono,monospace" font-size="9" fill="#FF7A56">✓ Complete</text>
+        </g>
+
+        <!-- Animated data packets following paths -->
+        <circle r="3.5" fill="#FF5C35" opacity="0.95">
+          <animateMotion dur="2.4s" repeatCount="indefinite"
+            path="M180,62 L180,100 L180,140 L180,182 L212,202 L272,202 L272,262 L272,302 L272,352 L272,392 L272,430 L180,430 L180,448"/>
+          <animate attributeName="opacity" values="0;1;1;1;0" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="rgba(255,130,80,0.85)" opacity="0">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin="1.2s"
+            path="M180,62 L180,100 L180,140 L180,182 L148,202 L88,202 L88,262 L88,302 L88,352 L88,392 L88,430 L180,430 L180,448"/>
+          <animate attributeName="opacity" values="0;0.85;0.85;0.85;0" dur="3.4s" repeatCount="indefinite" begin="1.2s"/>
+        </circle>
+
+        <!-- Status dots -->
+        <circle cx="93" cy="42" r="3" fill="#22c55e">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="93" cy="120" r="3" fill="#FF5C35">
+          <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite" begin=".4s"/>
+        </circle>
+        <circle cx="219" cy="282" r="3" fill="#FF5C35">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1.8s" repeatCount="indefinite" begin=".8s"/>
+        </circle>
+        <circle cx="219" cy="372" r="3" fill="#FF5C35">
+          <animate attributeName="opacity" values="1;0.2;1" dur="2.2s" repeatCount="indefinite" begin="1.2s"/>
+        </circle>
+      </svg>
+
+      <div class="fbadge" style="bottom:72px;left:14px;animation-delay:0.5s;animation-duration:5s">contacts.upsert() ✓</div>
+      <div class="fbadge" style="top:110px;right:14px;animation-delay:2.2s;animation-duration:6s">deal.create()</div>
+      <div class="fbadge" style="bottom:140px;right:14px;animation-delay=1.1s;animation-duration:4.8s">NS sync → SO</div>
+    </div>
+  </div>
 </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-copy">© 2026 <span>Muhammad Huzaifa</span> — Senior HubSpot Developer</div>
-        <a href="#hero" class="footer-back">↑ back to top</a>
-    </footer>
-</body>
+<section id="about">
+  <div class="sec-inner">
+    <div class="about-layout">
+      <div class="about-body">
+        <div class="sec-eyebrow">About Me</div>
+        <h2>At the crossroads of<br/><em>CRM & automation</em></h2>
+        <p>I'm a HubSpot developer with <strong>2.5+ years of hands-on experience</strong> designing and implementing CRM solutions that power real business operations — not just demos.</p>
+        <p>My work lives at the intersection of HubSpot's platform, backend serverless logic, and third-party APIs. I specialize in making data move reliably between complex systems like <strong>HubSpot ↔ NetSuite</strong>, handling edge cases, rate limits, and business logic with care.</p>
+        <p>From building <strong>custom cards and objects</strong> to orchestrating <strong>multi-system integrations</strong> via Zapier and direct APIs, I bring both technical depth and a product mindset to every project.</p>
+      </div>
+      <div class="about-cards">
+        <div class="hi-card reveal">
+          <div class="hi-card-title">⚡ Serverless-First Thinking</div>
+          <div class="hi-card-desc">HubSpot custom code actions, serverless functions, and API-heavy workflows are my everyday tools.</div>
+        </div>
+        <div class="hi-card reveal">
+          <div class="hi-card-title">🔁 Bidirectional Sync Specialist</div>
+          <div class="hi-card-desc">Deep experience syncing HubSpot ↔ NetSuite — Sales Orders, Purchase Orders, Invoices, and fulfillments.</div>
+        </div>
+        <div class="hi-card reveal">
+          <div class="hi-card-title">🔗 Integration Architect</div>
+          <div class="hi-card-desc">PandaDoc, JIRA, Gmail, and Slack connected via Zapier and native APIs — with real error handling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="education">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">Education</div>
+    <h2>Academic <em>Background</em></h2>
+    <p class="sec-lead">The foundation behind the code.</p>
+    <div class="edu-block reveal">
+      <div class="edu-year">2020 – 2024</div>
+      <div class="edu-body">
+        <div class="edu-degree">Bachelor of Science in Computer Science</div>
+        <div class="edu-school">Government College University Lahore</div>
+        <div class="edu-desc">Studied core software engineering concepts — data structures, database systems, OS, and system programming — alongside modern AI and LLM development. Applied this directly to real-world HubSpot and CRM integration work post-graduation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">Skills & Tools</div>
+    <h2>What I <em>Work With</em></h2>
+    <p class="sec-lead">A focused stack built around HubSpot's platform and the ecosystem around it.</p>
+    <div class="skills-grid">
+      <div class="sk-group reveal">
+        <div class="sk-group-head"><span class="line"></span>HubSpot Core</div>
+        <div class="sk-tags">
+          <span class="sk-tag primary">Serverless Functions</span><span class="sk-tag primary">Custom Cards</span><span class="sk-tag primary">Custom Objects</span><span class="sk-tag primary">Pipelines & Stages</span><span class="sk-tag">CRM APIs</span><span class="sk-tag">Workflows</span><span class="sk-tag">Object Associations</span><span class="sk-tag">HubSpot Forms</span>
+        </div>
+      </div>
+      <div class="sk-group reveal">
+        <div class="sk-group-head"><span class="line"></span>Integrations</div>
+        <div class="sk-tags">
+          <span class="sk-tag primary">NetSuite RESTlets</span><span class="sk-tag primary">SuiteScript 2.x</span><span class="sk-tag">OAuth 1.0</span><span class="sk-tag">PandaDoc API</span><span class="sk-tag">JIRA API</span><span class="sk-tag">Gmail API</span><span class="sk-tag">Slack API</span><span class="sk-tag">Zapier</span>
+        </div>
+      </div>
+      <div class="sk-group reveal">
+        <div class="sk-group-head"><span class="line"></span>Development</div>
+        <div class="sk-tags">
+          <span class="sk-tag primary">Node.js</span><span class="sk-tag">JavaScript (ES6+)</span><span class="sk-tag">REST APIs</span><span class="sk-tag">Batch Processing</span><span class="sk-tag">Rate Limit Handling</span><span class="sk-tag">Error Handling</span><span class="sk-tag">JSON / XML</span>
+        </div>
+      </div>
+      <div class="sk-group reveal">
+        <div class="sk-group-head"><span class="line"></span>Marketing & Ops</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Transactional Emails</span><span class="sk-tag">Marketing Automation</span><span class="sk-tag">Invoice Creation</span><span class="sk-tag">Order Fulfillment</span><span class="sk-tag">Sales Order Sync</span><span class="sk-tag">Purchase Orders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">Experience</div>
+    <h2>Work <em>History</em></h2>
+    <p class="sec-lead">2.5+ years of building real-world HubSpot solutions.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div><div class="tl-title">HubSpot Developer</div><div class="tl-company">Burnt Brains</div></div>
+          <div class="tl-date">2024 – Present</div>
+        </div>
+        <ul class="tl-list">
+          <li>Designed and maintained bidirectional data sync between HubSpot and NetSuite, covering deals, tickets, line items, Sales Orders, and Purchase Orders.</li>
+          <li>Built HubSpot serverless functions and custom code workflow actions in Node.js to automate invoice creation, order fulfillment, and data enrichment.</li>
+          <li>Developed custom cards and custom objects in HubSpot to extend CRM data models for complex product and order management use cases.</li>
+          <li>Integrated HubSpot with PandaDoc, JIRA, Gmail, and Slack via Zapier for automated notifications and document generation.</li>
+          <li>Configured HubSpot pipelines, stages, and object associations to mirror real business processes and sales workflows.</li>
+          <li>Resolved critical issues including batch API 100-input limits, NetSuite 429 rate errors with exponential backoff, and SuiteScript paging cursor bugs.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">Projects</div>
+    <h2>Featured <em>Work</em></h2>
+    <p class="sec-lead">Key integrations and systems I've designed and shipped.</p>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">🔄</div><span class="proj-badge">Integration</span></div>
+        <div class="proj-title">HubSpot ↔ NetSuite Bidirectional Sync</div>
+        <div class="proj-desc">Full bidirectional sync of deals, tickets, and line items. Handles Sales Order creation, Purchase Order updates, chunked batch reads, and rate limit resilience.</div>
+        <div class="proj-stack"><span class="stack-tag">Node.js</span><span class="stack-tag">SuiteScript 2.x</span><span class="stack-tag">OAuth 1.0</span><span class="stack-tag">HubSpot API</span><span class="stack-tag">NetSuite RESTlet</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">🧾</div><span class="proj-badge">Automation</span></div>
+        <div class="proj-title">Invoice & Fulfillment Automation</div>
+        <div class="proj-desc">Workflow-triggered serverless functions that create invoices and process fulfillments in NetSuite, removing manual data entry and sync delays.</div>
+        <div class="proj-stack"><span class="stack-tag">HubSpot Workflows</span><span class="stack-tag">Serverless Functions</span><span class="stack-tag">NetSuite API</span><span class="stack-tag">Node.js</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">📄</div><span class="proj-badge">Integration</span></div>
+        <div class="proj-title">PandaDoc + HubSpot Document Flow</div>
+        <div class="proj-desc">Connected HubSpot deals to PandaDoc for automatic document generation and status sync — proposals sent without leaving the CRM.</div>
+        <div class="proj-stack"><span class="stack-tag">PandaDoc API</span><span class="stack-tag">HubSpot CRM</span><span class="stack-tag">Zapier</span><span class="stack-tag">Webhooks</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">🔔</div><span class="proj-badge">Automation</span></div>
+        <div class="proj-title">Multi-Channel Notification System</div>
+        <div class="proj-desc">Unified notification pipeline connecting HubSpot workflow triggers to Slack, Gmail, and JIRA based on deal stage changes and support events.</div>
+        <div class="proj-stack"><span class="stack-tag">Zapier</span><span class="stack-tag">Slack API</span><span class="stack-tag">JIRA API</span><span class="stack-tag">Gmail API</span><span class="stack-tag">HubSpot</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">🧩</div><span class="proj-badge">Custom Dev</span></div>
+        <div class="proj-title">Custom CRM Objects & Cards</div>
+        <div class="proj-desc">Extended HubSpot data models with custom objects and CRM cards for order tracking, product configuration, and pipeline-stage-specific data capture.</div>
+        <div class="proj-stack"><span class="stack-tag">Custom Objects</span><span class="stack-tag">Custom Cards</span><span class="stack-tag">HubSpot UI Ext.</span><span class="stack-tag">Associations API</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-icon">📧</div><span class="proj-badge">Marketing</span></div>
+        <div class="proj-title">Automated Email & Marketing Flows</div>
+        <div class="proj-desc">End-to-end HubSpot marketing and transactional email workflows — from lead nurture sequences to order confirmations with dynamic personalization tokens.</div>
+        <div class="proj-stack"><span class="stack-tag">HubSpot Workflows</span><span class="stack-tag">Email Templates</span><span class="stack-tag">HubSpot Forms</span><span class="stack-tag">Smart Content</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">Services</div>
+    <h2>What I Can <em>Do For You</em></h2>
+    <p class="sec-lead">Focused services for businesses that run on HubSpot.</p>
+    <div class="srv-grid">
+      <div class="srv-card reveal"><div class="srv-num">01</div><div class="srv-title">HubSpot–NetSuite Integration</div><div class="srv-desc">End-to-end bidirectional sync of your CRM and ERP data — deals, orders, invoices, and fulfillments in perfect alignment.</div></div>
+      <div class="srv-card reveal"><div class="srv-num">02</div><div class="srv-title">Custom HubSpot Development</div><div class="srv-desc">Serverless functions, custom cards, custom objects, and advanced workflows tailored to your business logic.</div></div>
+      <div class="srv-card reveal"><div class="srv-num">03</div><div class="srv-title">Third-Party Integrations</div><div class="srv-desc">Connect HubSpot to PandaDoc, JIRA, Slack, Gmail, and more — via Zapier or direct API with robust error handling.</div></div>
+      <div class="srv-card reveal"><div class="srv-num">04</div><div class="srv-title">Marketing & Email Automation</div><div class="srv-desc">Lead nurture flows, transactional email systems, and smart segmentation that convert and retain customers at scale.</div></div>
+      <div class="srv-card reveal"><div class="srv-num">05</div><div class="srv-title">CRM Architecture & Consulting</div><div class="srv-desc">Pipeline design, object associations, data modeling — structure your HubSpot instance to match how your team works.</div></div>
+      <div class="srv-card reveal"><div class="srv-num">06</div><div class="srv-title">Integration Debugging & Hardening</div><div class="srv-desc">Fix flaky syncs, rate limit failures, and silent data bugs. Add retries, batching, and monitoring to existing integrations.</div></div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("XB2JM1KX3w-99UvzS");
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=document.getElementById("submit-btn");
+  btn.textContent="Sending…";btn.disabled=true;
+  const p={from_name:document.getElementById("from_name").value,from_email:document.getElementById("from_email").value,message:document.getElementById("message").value};
+  emailjs.send("service_kh4jmxn","template_bnt3guc",p)
+    .then(()=>{btn.textContent="Sent ✓";document.getElementById("contact-form").reset();setTimeout(()=>{btn.textContent="Send Message →";btn.disabled=false;},3000);})
+    .catch(err=>{console.error(err);btn.textContent="Failed — try again";btn.disabled=false;});
+}
+</script>
+
+<section id="contact">
+  <div class="sec-inner">
+    <div class="contact-layout">
+      <div class="contact-head">
+        <div class="sec-eyebrow">Contact</div>
+        <h2>Let's <em>Work Together</em></h2>
+        <p>Have a HubSpot integration challenge, a sync that keeps breaking, or a new automation in mind? I'd love to hear about it.</p>
+        <div class="clinks">
+          <a href="mailto:mhuzaifa.prof@email.com" class="clink"><div class="clink-icon">✉️</div>mhuzaifa.prof@email.com</a>
+          <a href="https://www.linkedin.com/in/mhuzaifa440/" class="clink" target="_blank"><div class="clink-icon">💼</div>linkedin.com/in/huzaifa</a>
+          <a href="https://github.com/Huzaifa950" class="clink" target="_blank"><div class="clink-icon">🐙</div>github.com/huzaifa</a>
+        </div>
+      </div>
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div><label>Your Name</label><input type="text" id="from_name" placeholder="Alex Johnson" required/></div>
+        <div><label>Email Address</label><input type="email" id="from_email" placeholder="alex@company.com" required/></div>
+        <div><label>What do you need?</label><textarea id="message" placeholder="Describe your integration or automation challenge…" required></textarea></div>
+        <button type="submit" id="submit-btn">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 <span>Muhammad Huzaifa</span> — HubSpot Developer</div>
+  <a href="#hero" class="footer-back">↑ back to top</a>
+</footer>
+
+<script>
+/* STARFIELD with slow upward drift */
+const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
+let stars=[];
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+function initStars(){
+  stars=[];
+  const n=Math.floor(canvas.width*canvas.height/3000);
+  for(let i=0;i<n;i++) stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.4+0.2,a:Math.random()*0.7+0.15,ts:Math.random()*0.02+0.005,to:Math.random()*Math.PI*2,vy:Math.random()*0.06+0.01,orange:Math.random()<0.07});
+}
+let t=0;
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);t+=0.016;
+  stars.forEach(s=>{
+    s.y-=s.vy;if(s.y<-2)s.y=canvas.height+2;
+    const tw=Math.sin(t*s.ts*60+s.to),a=s.a+tw*0.2;
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=s.orange?`rgba(255,120,60,${Math.max(0,a)})`:`rgba(210,200,255,${Math.max(0,a)})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+resize();initStars();draw();
+window.addEventListener('resize',()=>{resize();initStars()});
+
+/* CURSOR */
+const cur=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.proj-card,.srv-card,.hi-card,.sk-tag').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('expand'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('expand'));
+});
+
+/* SCROLL PROGRESS + NAV */
+const pb=document.getElementById('progress-bar'),nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{
+  pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%';
+  nav.classList.toggle('scrolled',window.scrollY>80);
+});
+
+/* REVEAL */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* 3D TILT on project cards */
+document.querySelectorAll('.proj-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-0.5)*12;
+    const y=((e.clientY-r.top)/r.height-0.5)*-12;
+    card.style.transform=`translateY(-6px) rotateX(${y}deg) rotateY(${x}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+});
+
+/* Replace the existing smooth scroll with optimized anchor navigation */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      // Disable smooth scroll temporarily
+      document.documentElement.style.scrollBehavior = 'auto';
+      target.scrollIntoView();
+      // Re-enable after scroll
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'smooth';
+      }, 50);
+    }
+  });
+});
+</script>
+</body>
 </html>
