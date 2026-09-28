@@ -1899,11 +1899,11 @@
             background: #FFFFFF; color: #1F1D2B; border-radius: 6px; padding: clamp(1.4rem, 5vw, 3.2rem);
             box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5); font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6
         }
-        .pp-top { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 1.1rem; border-bottom: 2px solid #FF5C35 }
-        .pp-name { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 4.5vw, 2.3rem); letter-spacing: -0.02em; line-height: 1.05; color: #14121D }
+        .pp-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 1.5rem 2rem; padding-bottom: 1.1rem; border-bottom: 2px solid #FF5C35 }
+        .pp-name { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.05rem); letter-spacing: -0.02em; line-height: 1.05; color: #14121D }
         .pp-role { color: #E2461F; font-weight: 700; font-family: var(--font-display); margin-top: 6px }
         .pp-tags { font-size: 0.78rem; color: #5E5A70; margin-top: 2px }
-        .pp-contact { display: flex; flex-direction: column; gap: 1px; font-size: 0.8rem; color: #4A465C; text-align: right }
+        .pp-contact { display: flex; flex-direction: column; gap: 1px; font-size: 0.82rem; color: #4A465C; text-align: left; white-space: nowrap; padding-top: 4px }
         .pp-contact a { color: #C63E1B; text-decoration: none }
         .pp-contact a:hover { text-decoration: underline }
         .paper section.pp-sec { padding: 0; margin-top: 1.4rem; border: 0; z-index: auto }
@@ -1931,7 +1931,8 @@
         @media (max-width: 560px) {
             .nav-cta { display: none }
             .nav-logo { font-size: 1.1rem }
-            .pp-contact { text-align: left }
+            .pp-top { grid-template-columns: 1fr }
+            .pp-contact { white-space: normal; padding-top: 0 }
             .pp-skills { grid-template-columns: 1fr; gap: 0 }
             .pp-skills dd { margin-bottom: 8px }
             .rv-btn .lbl-long { display: none }
