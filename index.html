@@ -1938,6 +1938,71 @@
             .rv-btn .lbl-long { display: none }
             .proj-grid { grid-template-columns: 1fr }
         }
+
+        /* ─── Case studies ─── */
+        .cs-open {
+            align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 0.2rem;
+            font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 0.55rem 0.95rem; border-radius: var(--r-sm); border: 1px solid var(--border2);
+            background: var(--orange-faint); color: var(--orange2); cursor: pointer; transition: all .2s; position: relative; z-index: 1
+        }
+        .cs-open span { transition: transform .2s }
+        .cs-open:hover { background: var(--orange-dim); color: var(--orange); box-shadow: 0 0 22px var(--orange-glow) }
+        .cs-open:hover span { transform: translateX(3px) }
+        .proj-card { cursor: pointer }
+        .cs-shell { width: min(940px, 100%) }
+        .cs-panel {
+            background: var(--deep); border: 1px solid var(--border); border-radius: var(--r-lg);
+            padding: clamp(1.4rem, 4.5vw, 3rem); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden
+        }
+        .cs-panel::before {
+            content: ''; position: absolute; top: -140px; right: -140px; width: 380px; height: 380px; pointer-events: none;
+            background: radial-gradient(circle, var(--orange-dim), transparent 70%)
+        }
+        .cs-panel[hidden] { display: none }
+        .cs-head { position: relative }
+        .cs-kicker { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange2) }
+        .cs-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-top: 1rem; text-wrap: balance }
+        .cs-summary { color: var(--text2); font-size: 1.05rem; font-weight: 300; margin-top: 0.8rem; max-width: 62ch }
+        .cs-meta { display: flex; flex-wrap: wrap; gap: 0.6rem 2.2rem; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border) }
+        .cs-meta dt { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3) }
+        .cs-meta dd { font-family: var(--font-display); font-weight: 600; color: var(--text); font-size: 0.95rem }
+        .cs-stack { margin-top: 1rem }
+        .cs-diagram {
+            margin: 1.8rem 0 0; padding: 1rem 1.2rem 1.1rem; border-radius: var(--r-lg); border: 1px solid var(--border2);
+            background: rgba(10, 9, 16, 0.6); position: relative
+        }
+        .cs-diagram figcaption { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); margin-bottom: 0.6rem }
+        .cs-diagram svg { display: block; width: 100%; max-width: 680px; height: auto; margin: 0 auto }
+        .cs-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem }
+        .cs-stat { padding: 1.1rem 1.2rem; border-radius: var(--r); background: var(--panel); border: 1px solid var(--border) }
+        .cs-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1; color: var(--orange); font-variant-numeric: tabular-nums }
+        .cs-stat-lbl { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-top: 8px }
+        .cs-body { margin-top: 2rem; display: flex; flex-direction: column }
+        .cs-sec { display: grid; grid-template-columns: 56px 1fr; gap: 0 1rem; padding: 1.4rem 0; border-top: 1px solid var(--border) }
+        .cs-sec-num { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--orange); padding-top: 4px }
+        .cs-sec h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem }
+        .cs-sec p, .cs-sec li { color: var(--text2); font-weight: 300; max-width: 68ch }
+        .cs-sec p + p, .cs-sec ul + p, .cs-sec p + ul { margin-top: 0.7rem }
+        .cs-sec b { color: var(--text); font-weight: 600 }
+        .cs-sec i { color: var(--orange2); font-style: normal; font-family: var(--font-mono); font-size: 0.88em }
+        .cs-sec ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem }
+        .cs-sec li { position: relative; padding-left: 1.2rem }
+        .cs-sec li::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange-glow) }
+        .cs-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1rem 1.2rem; border-radius: var(--r); background: var(--deep); border: 1px solid var(--border2) }
+        .cs-foot p { color: var(--text2); font-size: 0.92rem }
+        .cs-foot a { text-decoration: none }
+        .cs .rv-bar { flex-wrap: nowrap }
+        .cs .rv-title { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+        .cs .rv-btn { flex-shrink: 0 }
+        @media (max-width: 560px) { .cs .rv-btn:not(.rv-close) { padding: 0.55rem 0.7rem } }
+        :root[data-theme="light"] .cs-panel { background: #fff; box-shadow: 0 30px 80px rgba(60, 55, 95, 0.18) }
+        :root[data-theme="light"] .cs-diagram { background: rgba(22, 18, 52, 0.03) }
+        :root[data-theme="light"] .cs-foot { background: #fff }
+        @media (max-width: 560px) {
+            .cs-sec { grid-template-columns: 1fr; gap: 0.3rem }
+            .cs-meta { gap: 0.6rem 1.4rem }
+        }
     </style>
 </head>
 <body>
@@ -2379,9 +2444,10 @@
                                 class="stack-tag">SuiteScript 2.x</span><span class="stack-tag">OAuth 1.0</span><span
                                 class="stack-tag">HubSpot API</span><span class="stack-tag">NetSuite RESTlet</span>
                         </div>
+                        <button class="cs-open" type="button" data-cs="1">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Bidirectional Sync</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Bidirectional Sync<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p1a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
@@ -2425,9 +2491,10 @@
                         <div class="proj-stack"><span class="stack-tag">HubSpot Workflows</span><span
                                 class="stack-tag">Serverless Functions</span><span class="stack-tag">NetSuite
                                 API</span><span class="stack-tag">Node.js</span></div>
+                        <button class="cs-open" type="button" data-cs="2">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Invoice Automation</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Invoice Automation<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
@@ -2468,11 +2535,12 @@
                         <div class="proj-desc">Connected HubSpot deals to PandaDoc for automatic document generation and
                             status sync — proposals sent without leaving the CRM.</div>
                         <div class="proj-stack"><span class="stack-tag">PandaDoc API</span><span
-                                class="stack-tag">HubSpot CRM</span><span class="stack-tag">Zapier</span><span
+                                class="stack-tag">HubSpot CRM</span><span class="stack-tag">HubSpot Custom Code</span><span
                                 class="stack-tag">Webhooks</span></div>
+                        <button class="cs-open" type="button" data-cs="3">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Document Flow</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Document Flow<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p3a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
@@ -2522,14 +2590,15 @@
                             <div class="proj-icon">🔔</div><span class="proj-badge">Automation</span>
                         </div>
                         <div class="proj-title">Multi-Channel Notification System</div>
-                        <div class="proj-desc">Unified notification pipeline connecting HubSpot workflow triggers to
-                            Slack, Gmail, and JIRA based on deal stage changes and support events.</div>
-                        <div class="proj-stack"><span class="stack-tag">Zapier</span><span class="stack-tag">Slack
+                        <div class="proj-desc">One-click "Submit to AdOps" from a HubSpot custom card fires an n8n
+                            workflow that creates a tracked JIRA issue and notifies the team on Slack and email.</div>
+                        <div class="proj-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Slack
                                 API</span><span class="stack-tag">JIRA API</span><span class="stack-tag">Gmail
                                 API</span><span class="stack-tag">HubSpot</span></div>
+                        <button class="cs-open" type="button" data-cs="4">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Notification Fan-out</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Notification Fan-out<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p4a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
@@ -2540,7 +2609,7 @@
                             </defs>
                             <rect class="nodebox hot" x="10" y="50" width="120" height="50" rx="9" />
                             <text class="nlabel" x="70" y="70" text-anchor="middle">HubSpot</text>
-                            <text class="nsub" x="70" y="86" text-anchor="middle">Event Trigger</text>
+                            <text class="nsub" x="70" y="86" text-anchor="middle">Submit to AdOps → n8n</text>
                             <rect class="nodebox dim" x="278" y="14" width="112" height="34" rx="8" />
                             <text class="nlabel" x="334" y="34" text-anchor="middle">Slack Users</text>
                             <rect class="nodebox dim" x="278" y="58" width="112" height="34" rx="8" />
@@ -2575,55 +2644,55 @@
                             <div class="proj-icon">🧩</div><span class="proj-badge">Custom Dev</span>
                         </div>
                         <div class="proj-title">Custom CRM Objects & Cards</div>
-                        <div class="proj-desc">Extended HubSpot data models with custom objects and CRM cards for order
-                            tracking, product configuration, and pipeline-stage-specific data capture.</div>
+                        <div class="proj-desc">Custom HubSpot objects for NetSuite Invoices and Invoice Line Items, kept
+                            current by a one-way sync, with CRM cards that show invoice details and line items.</div>
                         <div class="proj-stack"><span class="stack-tag">Custom Objects</span><span
                                 class="stack-tag">Custom Cards</span><span class="stack-tag">HubSpot UI Ext.</span><span
-                                class="stack-tag">Associations API</span></div>
+                                class="stack-tag">Associations API</span><span class="stack-tag">NetSuite</span></div>
+                        <button class="cs-open" type="button" data-cs="5">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Object Model</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Object Model<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p5a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
                                     orient="auto-start-reverse">
-                                    <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(255,92,53,0.6)" stroke-width="1.8"
+                                    <path d="M2 2L8 5L2 8" fill="none" stroke="#FF5C35" stroke-width="1.8"
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </marker>
                             </defs>
-                            <line x1="200" y1="75" x2="78" y2="36" stroke="rgba(255,92,53,0.45)" stroke-width="1.4"
-                                stroke-dasharray="4 4" class="fe s" />
-                            <line x1="200" y1="75" x2="78" y2="116" stroke="rgba(255,92,53,0.45)" stroke-width="1.4"
-                                stroke-dasharray="4 4" class="fe m" />
-                            <line x1="200" y1="75" x2="322" y2="36" stroke="rgba(255,92,53,0.45)" stroke-width="1.4"
-                                stroke-dasharray="4 4" class="fe" />
-                            <line x1="200" y1="75" x2="322" y2="116" stroke="rgba(255,92,53,0.45)" stroke-width="1.4"
-                                stroke-dasharray="4 4" class="fe s" />
-                            <rect class="nodebox hot" x="158" y="55" width="84" height="40" rx="9" />
-                            <text class="nlabel" x="200" y="79" text-anchor="middle">Hubspot Deal</text>
-                            <rect class="nodebox dim" x="14" y="18" width="100" height="34" rx="8" />
-                            <text class="nlabel" x="64" y="38" text-anchor="middle" font-size="8">Purchase Orders</text>
-                            <rect class="nodebox dim" x="14" y="100" width="100" height="34" rx="8" />
-                            <text class="nlabel" x="64" y="120" text-anchor="middle" font-size="8">Event Tabls</text>
-                            <rect class="nodebox dim" x="286" y="18" width="100" height="34" rx="8" />
-                            <text class="nlabel" x="336" y="38" text-anchor="middle" font-size="8">LineItems</text>
-                            <rect class="nodebox dim" x="286" y="100" width="100" height="34" rx="8" />
-                            <text class="nlabel" x="336" y="120" text-anchor="middle" font-size="8">Rate Cards</text>
-                            <text class="elabel" x="200" y="106" text-anchor="middle">Associations API</text>
-                            <circle r="2.8" fill="#FF9870">
-                                <animateMotion dur="2.4s" repeatCount="indefinite" path="M200,75 L78,36" />
+                            <text class="elabel" x="60" y="42" text-anchor="middle">One-way sync</text>
+                            <rect class="nodebox hot" x="8" y="50" width="104" height="52" rx="9" />
+                            <text class="nlabel" x="60" y="72" text-anchor="middle">NetSuite</text>
+                            <text class="nsub" x="60" y="88" text-anchor="middle">Invoices + Lines</text>
+                            <rect class="nodebox" x="148" y="12" width="104" height="46" rx="9" />
+                            <text class="nlabel" x="200" y="32" text-anchor="middle">Invoice</text>
+                            <text class="nsub" x="200" y="47" text-anchor="middle">Custom Object</text>
+                            <rect class="nodebox" x="148" y="92" width="104" height="46" rx="9" />
+                            <text class="nlabel" x="200" y="112" text-anchor="middle" font-size="8">Invoice Line Items</text>
+                            <text class="nsub" x="200" y="127" text-anchor="middle">Custom Object</text>
+                            <rect class="nodebox dim" x="288" y="50" width="104" height="52" rx="9" />
+                            <text class="nlabel" x="340" y="72" text-anchor="middle">CRM Card</text>
+                            <text class="nsub" x="340" y="88" text-anchor="middle">Body + Line Items</text>
+                            <path d="M112 70 L130 70 L130 35 L148 35" fill="none" stroke="#FF5C35" stroke-width="1.5"
+                                stroke-dasharray="5 4" marker-end="url(#p5a)" class="fe" />
+                            <path d="M112 82 L130 82 L130 115 L148 115" fill="none" stroke="#FF5C35" stroke-width="1.5"
+                                stroke-dasharray="5 4" marker-end="url(#p5a)" class="fe m" />
+                            <line x1="200" y1="58" x2="200" y2="92" stroke="rgba(255,92,53,0.45)" stroke-width="1.4"
+                                stroke-dasharray="3 3" class="fe s" />
+                            <text class="elabel" x="206" y="78">associated</text>
+                            <path d="M252 35 L270 35 L270 70 L288 70" fill="none" stroke="rgba(255,92,53,0.5)"
+                                stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#p5a)" class="fe s" />
+                            <path d="M252 115 L270 115 L270 82 L288 82" fill="none" stroke="rgba(255,92,53,0.5)"
+                                stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#p5a)" class="fe s" />
+                            <circle r="3" fill="#FF5C35">
+                                <animateMotion dur="2.2s" repeatCount="indefinite" path="M112,70 L130,70 L130,35 L148,35" />
                             </circle>
-                            <circle r="2.8" fill="#FF9870">
-                                <animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite"
-                                    path="M200,75 L322,36" />
+                            <circle r="3" fill="#FF5C35">
+                                <animateMotion dur="2.2s" begin="0.7s" repeatCount="indefinite" path="M112,82 L130,82 L130,115 L148,115" />
                             </circle>
-                            <circle r="2.8" fill="#FF9870">
-                                <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"
-                                    path="M200,75 L78,116" />
-                            </circle>
-                            <circle r="2.8" fill="#FF9870">
-                                <animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite"
-                                    path="M200,75 L322,116" />
+                            <circle r="2.6" fill="#FF9870">
+                                <animateMotion dur="2.6s" begin="1.1s" repeatCount="indefinite" path="M252,35 L270,35 L270,70 L288,70" />
                             </circle>
                         </svg>
                     </div>
@@ -2641,9 +2710,10 @@
                         <div class="proj-stack"><span class="stack-tag">HubSpot Workflows</span><span
                                 class="stack-tag">Email Templates</span><span class="stack-tag">HubSpot
                                 Forms</span><span class="stack-tag">Smart Content</span></div>
+                        <button class="cs-open" type="button" data-cs="6">Read case study <span aria-hidden="true">→</span></button>
                     </div>
                     <div class="proj-popup">
-                        <div class="pp-head"><span class="pp-dot"></span>Email Automated Flow</div>
+                        <div class="pp-head"><span class="pp-dot"></span>Email Automated Flow<span class="pp-badge">Click for case study</span></div>
                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <marker id="p6a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
@@ -2767,6 +2837,149 @@
         </div>
     </section>
 
+
+
+    <!-- ═══════════ CASE STUDY VIEWER ═══════════ -->
+    <div class="rv cs" id="case-viewer" role="dialog" aria-modal="true" aria-labelledby="cs-bar-title" hidden>
+        <div class="rv-shell cs-shell">
+            <div class="rv-bar">
+                <div class="rv-title" id="cs-bar-title"><span class="pp-dot"></span>Case study · <span id="cs-count">01 / 06</span></div>
+                <button class="rv-btn" type="button" id="cs-prev" aria-label="Previous case study">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span class="lbl-long">Prev</span>
+                </button>
+                <button class="rv-btn" type="button" id="cs-next" aria-label="Next case study">
+                    <span class="lbl-long">Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+                <button class="rv-btn rv-close" type="button" id="cs-close" aria-label="Close case study">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <article class="cs-panel" data-cs-panel="1" aria-labelledby="cs-h-1" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Integration</span><span>Case study 01</span></div>
+                    <h3 class="cs-title" id="cs-h-1">HubSpot ↔ NetSuite Bidirectional Sync</h3>
+                    <p class="cs-summary">A real-time sync that kept HubSpot and NetSuite in step while the client moved its business off NetSuite and onto HubSpot.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>Solo developer</dd></div><div><dt>Timeline</dt><dd>30 days</dd></div><div><dt>Type</dt><dd>System integration</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">Node.js</span><span class="stack-tag">SuiteScript 2.x</span><span class="stack-tag">OAuth 1.0</span><span class="stack-tag">HubSpot API</span><span class="stack-tag">NetSuite RESTlet</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="1"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                <div class="cs-stats"><div class="cs-stat"><div class="cs-stat-num">10K+</div><div class="cs-stat-lbl">records synced</div></div><div class="cs-stat"><div class="cs-stat-num">30</div><div class="cs-stat-lbl">days, solo build</div></div><div class="cs-stat"><div class="cs-stat-num">0</div><div class="cs-stat-lbl">manual re-keying</div></div></div>
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>The client had decided to migrate from NetSuite to HubSpot. Their deals, tickets and line items all lived in NetSuite, and the team needed that data in HubSpot, accurate and current, without anyone copying records across by hand during the switch.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><p>I built a sync that fires on every save, so a change shows up on the other side as it happens instead of waiting for a nightly batch.</p>
+<ul><li><b>HubSpot → NetSuite:</b> deal and line-item properties create or update the matching order records (Sales Orders and IOs) in NetSuite, including Purchase Order updates.</li>
+<li><b>NetSuite → HubSpot:</b> changes to the NetSuite IO sync back onto the HubSpot deal, so both systems agree.</li>
+<li><b>NetSuite side:</b> SuiteScript 2.x RESTlets, authenticated with OAuth 1.0.</li>
+<li><b>Bulk loads:</b> chunked batch reads, so large record sets move without timing out.</li></ul></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>The challenge</h4><p><b>API rate limits.</b> Moving thousands of records quickly ran into rate limits, and requests started coming back with HTTP 429. I reduced the number of calls by switching to the batch APIs, and added retry logic that re-sends any request rejected with a 429 instead of dropping it.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>More than <b>10,000 records</b> synced from NetSuite into HubSpot, which gave the client a clean data foundation for the migration with no manual data entry.</p></div></section>
+                </div>
+            </article>
+            <article class="cs-panel" data-cs-panel="2" aria-labelledby="cs-h-2" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Automation</span><span>Case study 02</span></div>
+                    <h3 class="cs-title" id="cs-h-2">Invoice &amp; Fulfillment Automation</h3>
+                    <p class="cs-summary">Status-driven HubSpot workflows that create item fulfillments and invoices in NetSuite automatically, replacing manual entry.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>HubSpot-side implementation</dd></div><div><dt>Timeline</dt><dd>6 months</dd></div><div><dt>Team</dt><dd>Team project</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">HubSpot Workflows</span><span class="stack-tag">Serverless Functions</span><span class="stack-tag">NetSuite API</span><span class="stack-tag">Node.js</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="2"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                <div class="cs-stats"><div class="cs-stat"><div class="cs-stat-num">~40</div><div class="cs-stat-lbl">invoices created / month</div></div><div class="cs-stat"><div class="cs-stat-num">2</div><div class="cs-stat-lbl">automated flows</div></div><div class="cs-stat"><div class="cs-stat-num">0</div><div class="cs-stat-lbl">manual invoices</div></div></div>
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>Every fulfillment and every invoice was created by hand in NetSuite. That meant repetitive data entry, and invoicing depended on someone noticing that an order was ready.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><p>Two flows, each triggered by a status on the HubSpot record and run by custom code actions that call the NetSuite API:</p>
+<ul><li><b>Fulfillment flow:</b> when Fulfillment Status is <i>Pending</i>, the item fulfillment is created in NetSuite.</li>
+<li><b>Invoicing flow:</b> when Invoice Status is <i>Pending</i>, the invoice is created in NetSuite.</li></ul>
+<p>I owned the HubSpot side of the build: the workflows, the triggers and the custom code actions that drive both flows.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>The challenge</h4><p><b>Duplicates and quantity mismatches.</b> An invoice is only correct if the fulfillments behind it are. Before invoicing, the flow removes duplicate fulfillments, then checks the fulfilled quantities against the line-item quantities so the invoice only goes out when they match.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>About <b>40 invoices a month</b> are now created automatically, with the quantity checks guarding against duplicate or wrong invoices. No one types invoices into NetSuite anymore.</p></div></section>
+                </div>
+            </article>
+            <article class="cs-panel" data-cs-panel="3" aria-labelledby="cs-h-3" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Integration</span><span>Case study 03</span></div>
+                    <h3 class="cs-title" id="cs-h-3">PandaDoc + HubSpot Document Flow</h3>
+                    <p class="cs-summary">Proposals created, filled with deal data, sent and signed from inside HubSpot, using the PandaDoc API.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>Solo developer</dd></div><div><dt>Timeline</dt><dd>1 week</dd></div><div><dt>Type</dt><dd>Integration</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">PandaDoc API</span><span class="stack-tag">HubSpot CRM</span><span class="stack-tag">HubSpot Custom Code</span><span class="stack-tag">Webhooks</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="3"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>Proposals were created and sent by hand. Reps built each document in PandaDoc, copied in the deal details, sent it and then had to follow its status outside the CRM.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><p>I moved the whole flow into HubSpot and used the PandaDoc API for every step:</p>
+<ul><li>When a deal reaches the <i>Out for Signatures</i> stage, the document is <b>created</b> from a template.</li>
+<li>It is <b>filled in</b> with the deal's data, including its line items.</li>
+<li>It is <b>sent</b> to the client and <b>signed</b> by them in PandaDoc.</li>
+<li>Once signed, the document is attached to the deal and the deal moves to <i>Closed Won</i>.</li></ul></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>The challenge</h4><p><b>Mapping line items into PandaDoc's pricing table.</b> HubSpot line items and PandaDoc pricing tables are structured differently, so each product, quantity and price had to be mapped into the table format so the proposal matched the deal exactly.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>Proposals now go out much faster and the manual steps are gone. Reps send documents and see signatures without leaving HubSpot.</p></div></section>
+                </div>
+            </article>
+            <article class="cs-panel" data-cs-panel="4" aria-labelledby="cs-h-4" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Automation</span><span>Case study 04</span></div>
+                    <h3 class="cs-title" id="cs-h-4">Multi-Channel Notification System</h3>
+                    <p class="cs-summary">A one-click hand-off from HubSpot to the AdOps team, so every request becomes a tracked JIRA issue.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>Developer</dd></div><div><dt>Timeline</dt><dd>1 week</dd></div><div><dt>Team</dt><dd>Team project</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">n8n</span><span class="stack-tag">Slack API</span><span class="stack-tag">JIRA API</span><span class="stack-tag">Gmail API</span><span class="stack-tag">HubSpot</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="4"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>Requests going from the sales side to AdOps weren't tracked as JIRA issues, so there was no reliable record of what had been handed over or where it stood.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><ul><li>A <b>Submit to AdOps</b> button sits on the Line Items custom card in HubSpot.</li>
+<li>Clicking it calls an <b>n8n webhook</b> with the record's details.</li>
+<li>The n8n workflow <b>creates the JIRA issue</b> and notifies the team on Slack and by internal email.</li></ul></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>Design notes</h4><p>The design is deliberately simple: one button, one webhook, one workflow. Keeping the logic in n8n means routing and notifications can be changed without touching HubSpot.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>Every AdOps request now has a tracked JIRA issue, and the team hears about it straight away instead of finding out later.</p></div></section>
+                </div>
+            </article>
+            <article class="cs-panel" data-cs-panel="5" aria-labelledby="cs-h-5" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Custom Dev</span><span>Case study 05</span></div>
+                    <h3 class="cs-title" id="cs-h-5">Custom CRM Objects &amp; Cards</h3>
+                    <p class="cs-summary">Custom HubSpot objects for NetSuite invoices and their line items, kept current by a one-way sync and shown on CRM cards.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>Developer</dd></div><div><dt>Timeline</dt><dd>4–5 months</dd></div><div><dt>Team</dt><dd>Team project</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">Custom Objects</span><span class="stack-tag">Custom Cards</span><span class="stack-tag">HubSpot UI Ext.</span><span class="stack-tag">Associations API</span><span class="stack-tag">NetSuite</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="5"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>HubSpot has its own built-in process for invoices, but it didn't match how this client invoices in NetSuite. They needed their actual NetSuite invoices, and every line on them, inside HubSpot.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><ul><li><b>Custom objects</b> for Invoices and Invoice Line Items, linked to each other with associations.</li>
+<li>A <b>one-way sync</b> from NetSuite keeps both objects current.</li>
+<li><b>Custom CRM cards</b> show each invoice's main (body) fields and its associated line items right on the record.</li></ul></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>The challenge</h4><p><b>Historical data.</b> Syncing new invoices was only half the job. All existing invoices and their line items also had to be backfilled from NetSuite, with the associations between them kept intact.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>NetSuite invoice data, both current and historical, is available in HubSpot in a structure that fits the client's process, and teams can see invoice details and line items without leaving the CRM.</p></div></section>
+                </div>
+            </article>
+            <article class="cs-panel" data-cs-panel="6" aria-labelledby="cs-h-6" hidden>
+                <header class="cs-head">
+                    <div class="cs-kicker"><span class="proj-badge">Marketing</span><span>Case study 06</span></div>
+                    <h3 class="cs-title" id="cs-h-6">Automated Email &amp; Marketing Flows</h3>
+                    <p class="cs-summary">An email flow that requests Final IDs, reads the replies, logs them on the right record and chases anyone who doesn't answer.</p>
+                    <dl class="cs-meta"><div><dt>Role</dt><dd>Developer</dd></div><div><dt>Timeline</dt><dd>2 weeks</dd></div><div><dt>Type</dt><dd>Workflow automation</dd></div></dl>
+                    <div class="proj-stack cs-stack"><span class="stack-tag">HubSpot Workflows</span><span class="stack-tag">Email Templates</span><span class="stack-tag">HubSpot Forms</span><span class="stack-tag">Smart Content</span></div>
+                </header>
+                <figure class="cs-diagram" data-diagram-from="6"><figcaption><span class="pp-dot"></span>System flow</figcaption></figure>
+                
+                <div class="cs-body">
+                    <section class="cs-sec"><div class="cs-sec-num">01</div><div class="cs-sec-body"><h4>The problem</h4><p>The team had to email people asking for Final IDs, wait for replies, chase anyone who didn't answer and then update the tickets by hand.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">02</div><div class="cs-sec-body"><h4>The solution</h4><ul><li><b>Trigger:</b> a <i>Request for Final IDs Needed</i> status starts the email flow.</li>
+<li><b>Active listening:</b> replies are read as they arrive.</li>
+<li><b>Logging:</b> each response is logged on the matching ticket.</li>
+<li><b>Follow-up:</b> if there's no response, a sequence of reminder emails goes out automatically.</li></ul></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">03</div><div class="cs-sec-body"><h4>The challenge</h4><p><b>Matching replies to the right record.</b> A reply is only useful if it lands on the correct ticket or deal. The core of the build was reliably mapping each email response back to the ticket or deal it belonged to.</p></div></section>
+                    <section class="cs-sec"><div class="cs-sec-num">04</div><div class="cs-sec-body"><h4>The result</h4><p>Requesting, chasing and logging Final IDs now happens without manual work, and every response is recorded on the right record.</p></div></section>
+                </div>
+            </article>
+            <div class="cs-foot">
+                <p>Have a similar integration or automation challenge?</p>
+                <a href="#contact" class="rv-btn primary" id="cs-contact">Let's talk →</a>
+            </div>
+        </div>
+    </div>
 
     <!-- ═══════════ RESUME VIEWER ═══════════ -->
     <div class="rv" id="resume-viewer" role="dialog" aria-modal="true" aria-labelledby="rv-title" hidden>
@@ -3070,6 +3283,88 @@
                     if (!saved) setTheme(e.matches ? 'light' : 'dark');
                 });
             }
+        })();
+    </script>
+
+    <script>
+        /* ═══════════ CASE STUDY VIEWER ═══════════ */
+        (function () {
+            var cv = document.getElementById('case-viewer');
+            if (!cv) return;
+            var panels = Array.prototype.slice.call(cv.querySelectorAll('[data-cs-panel]'));
+            var total = panels.length, current = 1, lastFocus = null;
+            var countEl = document.getElementById('cs-count');
+            var items = document.querySelectorAll('#projects .proj-item');
+
+            /* Reuse each card's flow diagram, with unique marker ids */
+            cv.querySelectorAll('[data-diagram-from]').forEach(function (fig) {
+                var idx = +fig.getAttribute('data-diagram-from');
+                var src = items[idx - 1] && items[idx - 1].querySelector('.proj-popup svg');
+                if (!src) { fig.remove(); return; }
+                var svg = src.cloneNode(true);
+                svg.querySelectorAll('[id]').forEach(function (el) {
+                    var oldId = el.id, newId = oldId + '-cs';
+                    el.id = newId;
+                    svg.querySelectorAll('[marker-end],[marker-start]').forEach(function (m) {
+                        ['marker-end', 'marker-start'].forEach(function (a) {
+                            var v = m.getAttribute(a);
+                            if (v === 'url(#' + oldId + ')') m.setAttribute(a, 'url(#' + newId + ')');
+                        });
+                    });
+                });
+                svg.setAttribute('role', 'img');
+                svg.setAttribute('aria-label', 'System flow diagram');
+                fig.appendChild(svg);
+            });
+
+            function pad(n) { return (n < 10 ? '0' : '') + n; }
+            function show(n) {
+                current = ((n - 1 + total) % total) + 1;
+                panels.forEach(function (p) { p.hidden = +p.getAttribute('data-cs-panel') !== current; });
+                countEl.textContent = pad(current) + ' / ' + pad(total);
+                cv.scrollTop = 0;
+                try { history.replaceState(null, '', '#case-' + current); } catch (e) { }
+            }
+            function open(n) {
+                if (cv.hidden) lastFocus = document.activeElement;
+                show(n);
+                cv.hidden = false;
+                document.body.style.overflow = 'hidden';
+                requestAnimationFrame(function () { cv.classList.add('open'); });
+                document.getElementById('cs-close').focus({ preventScroll: true });
+                cv.scrollTop = 0;
+            }
+            function close() {
+                cv.classList.remove('open');
+                document.body.style.overflow = '';
+                setTimeout(function () { cv.hidden = true; }, 250);
+                try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { }
+                if (lastFocus && lastFocus.focus) lastFocus.focus();
+            }
+
+            document.querySelectorAll('.cs-open').forEach(function (b) {
+                b.addEventListener('click', function (e) { e.stopPropagation(); open(+b.getAttribute('data-cs')); });
+            });
+            items.forEach(function (item, i) {
+                var card = item.querySelector('.proj-card');
+                if (card) card.addEventListener('click', function (e) {
+                    if (e.target.closest('a,button')) return;
+                    open(i + 1);
+                });
+            });
+            document.getElementById('cs-close').addEventListener('click', close);
+            document.getElementById('cs-prev').addEventListener('click', function () { show(current - 1); });
+            document.getElementById('cs-next').addEventListener('click', function () { show(current + 1); });
+            document.getElementById('cs-contact').addEventListener('click', function () { close(); }, true);
+            cv.addEventListener('click', function (e) { if (e.target === cv) close(); });
+            document.addEventListener('keydown', function (e) {
+                if (cv.hidden) return;
+                if (e.key === 'Escape') close();
+                else if (e.key === 'ArrowRight') show(current + 1);
+                else if (e.key === 'ArrowLeft') show(current - 1);
+            });
+            var m = /^#case-(\d+)$/.exec(location.hash);
+            if (m && +m[1] >= 1 && +m[1] <= total) open(+m[1]);
         })();
     </script>
 </body>
